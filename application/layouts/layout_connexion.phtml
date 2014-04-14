@@ -1,0 +1,41 @@
+<?= $this->doctype(); ?>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Hackathon Project</title>
+		<link href="<?= $this->baseUrl('/css/style.css')?>" media="screen" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<header>
+			<div class="header_wrapper">
+				<div class="container-fluid">
+					<div class="row-fluid">
+						<ul class="user_nav">
+							<li>
+							<?php $auth = Zend_Auth::getInstance();?>
+							<?php if ($auth->hasIdentity()): ?>
+								<a href="<?= $this->baseUrl('auth/logout')?>" rel="tooltip" class="btn tips icon_logout" data-original-title="Logout"><i class="icon-off"></i> Se déconnecter</a>
+							<?php endif; ?>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="container-fluid fond">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="wrapper">
+						<?php if ($auth->hasIdentity()): ?>
+							<?= $this->placeholder('menu'); ?>
+						<?php endif ; ?>
+						<?= $this->layout()->content; ?>
+					</div>
+				</div>
+	    	</div>
+		</div> 
+		<footer>
+		</footer>
+		<script type="text/javascript" src="<?= $this->baseUrl('/js/jquery.min.js');?>"></script>
+	</body>
+</html>
