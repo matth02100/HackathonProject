@@ -23,10 +23,6 @@ class IndexController extends Zend_Controller_Action
     
     public function interfaceAction()
     {    	
-    	$question = new Questionreponse();    	
-    	$this->view->lesquestions = $question->selectAll();
-    	$volume = new Sound();
-    	$volumeActuel = $volume->selectVolume();
-    	$this->view->volume = $volumeActuel[0]['volume'];
+    	
     }
 }

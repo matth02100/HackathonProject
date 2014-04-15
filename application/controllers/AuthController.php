@@ -7,6 +7,38 @@ class AuthController extends Zend_Controller_Action
 		$this->_redirect('index/index');
 	}
 	
+	function inscriptionAction()
+	{
+		$formInscription = new Application_Form_Inscription();
+		$this->view->forminscription = $formInscription;
+		$auth = Zend_Auth::getInstance();
+		if($this->getRequest()->isPost())
+    	{
+    		$data = $this->getRequest()->getPost();
+    		if($formInscription->isValid($data))
+    		{
+    			$user= new User();
+    			$max = $user->getIdMax();
+    			$newUser = $user->createRow();
+    			$newUser->idUser = $max["MAX(idUser)"]+1;
+    			$newUser->mail = $formInscription->getValue('mail');
+    			$newUser->pseudo = $formInscription->getValue('pseudo');
+    			$newUser->pwd = $formInscription->getValue('pwd');
+    			$newUser->nom = $formInscription->getValue('nom');
+    			$newUser->prenom = $formInscription->getValue('prenom');
+    			$newUser->dateNaissance = $formInscription->getValue('dateNaissance');
+    			$newUser->faculte = $formInscription->getValue('faculte');
+    			$newUser->save();
+    	
+    			$this->_redirect('auth/login');
+    		}
+    		else
+    		{
+    			$this->view->forminscription = $formInscription;
+    		}
+		}
+	}
+	
 	public function loginAction()
 	{
 		$this->_helper->layout->setLayout('layout_connexion');
@@ -43,7 +75,7 @@ class AuthController extends Zend_Controller_Action
 						{
 							$Utilisateur_Session_Namespace = new Zend_Session_Namespace("Utilisateur");
 							$Utilisateur_Session_Namespace->Utilisateur = $this->getRequest()->getPost();
-							exec("wget -o /home/matthieu/nao/cron/cron.connexion.log http://nao/cron/test > nul 2>&1");
+							//exec("wget -o /home/matthieu/nao/cron/cron.connexion.log http://nao/cron/test > nul 2>&1");
 							$this->redirect("/index/index");
 						}
 					}
