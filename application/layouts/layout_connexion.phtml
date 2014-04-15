@@ -52,23 +52,21 @@
    				<div class="modal-content">
       				<div class="modal-header">
         				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        				<h4 class="modal-title">Authentification obligatoire :</h4>
+        				<h4 class="modal-title">Authentification :</h4>
      				</div>
       				<div class="modal-body">
         				<div class="offset4 span3 center" style="margin-top:15px">
 	        				<div class="row">
 								<div class="col-md-6">
 									<div class="login">
-										<h3>Connexion : </h3>
+										<h3 class="titre_connect">Connexion : </h3>
 										<form class="form-horizontal" method="POST" action="<?= $this->baseUrl('/auth/login')?>" role="form">
 											<div class="form-group">
-												<label for="login" class="col-sm-2 control-label">Email</label>
 												<div class="col-sm-10">
-													<input name="login" class="form-control input_login" type="text" placeholder="exemple@mail.com"/><br/>
+													<input name="login" class="form-control input_login" type="text" placeholder="Mail : exemple@mail.com"/><br/>
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="motDePasse" class="col-sm-2 control-label">Mot de passe</label>
 												<div class="col-sm-10">
 													<input name="motDePasse" class="form-control input_login" type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;"/><br/>
 												</div>
@@ -90,64 +88,67 @@
 
 							 	<div class="col-md-6">
 							 		<div class="inscription">
-							 			<h3>Inscription :</h3>
+							 			<h3 class="titre_insc">Inscription :</h3>
 							 			<form class="form-horizontal" method="POST" action="<?= $this->baseUrl('/auth/inscription')?>" role="form">
 							 				<div class="form-group">
-							 					<label for="pseudo" class="col-sm-2">Pseudo</label>
+							 					<label for="pseudo" class="col-sm-2 label_inscrip">Pseudo</label>
 							 					<div class="col-sm-10">
 							 						<input type="text" name="pseudo" class="form-control" placeholder="Toto" />
 							 					</div>
 							 				</div>
 
 							 				<div class="form-group">
-							 					<label for="mail" class="col-sm-2">Mail</label>
+							 					<label for="mail" class="col-sm-2 label_inscrip">Mail</label>
 							 					<div class="col-sm-10">
 							 						<input type="email" name="mail" class="form-control" placeholder="exemple@mail.com" />
 							 					</div>
 							 				</div>
 
 							 				<div class="form-group">
-							 					<label for="password" class="col-sm-2">Mot de passe</label>
+							 					<label for="password" class="col-sm-2 label_inscrip">Mot de passe</label>
 							 					<div class="col-sm-10">
 							 						<input type="password" name="password" class="form-control" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
 							 					</div>
 							 				</div>
 
 							 				<div class="form-group">
-							 					<label for="name" class="col-sm-2">Nom</label>
+							 					<label for="name" class="col-sm-2 label_inscrip">Nom</label>
 							 					<div class="col-sm-10">
 							 						<input type="text" name="name" class="form-control" placeholder="Dupont" />
 							 					</div>
 							 				</div>
 
 							 				<div class="form-group">
-							 					<label for="surname" class="col-sm-2">Prénom</label>
+							 					<label for="surname" class="col-sm-2 label_inscrip">Prénom</label>
 							 					<div class="col-sm-10">
 							 						<input type="text" name="surname" class="form-control" placeholder="Martin" />
 							 					</div>
 							 				</div>
 
 							 				<div class="form-group">
-							 					<label for="year" class="col-sm-2">Année d'étude</label>
+							 					<label for="year" class="col-sm-2 label_inscrip">Année d'étude</label>
 							 					<div class="col-sm-10">
 							 						<input type="text" name="year" class="form-control" placeholder="5ème année" />
 							 					</div>
 							 				</div>
 
 							 				<div class="form-group">
-							 					<label for="facult" class="col-sm-2">Faculté</label>
+							 					<label for="facult" class="col-sm-2 label_inscrip">Faculté</label>
 							 					<div class="col-sm-10">
-							 						<input type="text" name="facult" class="form-control" placeholder="Université de Saint-Quentin" />
+							 						<input type="text" name="facult" class="form-control input_inscript" placeholder="Université de Saint-Quentin" />
 							 					</div>
 							 				</div>
+
+							 				<div class="form-group">
+												<div class="col-sm-offset-2 col-sm-10">
+													<input name="inscription" class="btn btn-primary btn-lg btn-insc" type="submit" id="btn-inscription"/>
+												</div>
+											</div>
 							 			</form>
 							 		</div>
 							 	</div>
 							</div>
 						</div>
-      				</div>
-      				<div class="modal-footer">
-        				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       				</div>
     			</div><!-- /.modal-content -->
   			</div><!-- /.modal-dialog -->
@@ -165,5 +166,3 @@
 		})
 	});
 </script>
-
-/auth/inscription

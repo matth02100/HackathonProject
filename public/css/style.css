@@ -30,9 +30,13 @@ footer {
 }
 
 .login {
-	width : 600px;
+	width : 450px;
 	margin : 0 auto;
 	margin-top : 50px;
+}
+
+.inscription {
+	margin-left : -130px;
 }
 
 .btn-connect {
@@ -42,6 +46,25 @@ footer {
 	height : 36px;
 }
 
-.modal_content {
-	/*width : 800px;*/
+
+.label_inscrip {
+	font-size : 12px;
+	margin-top : 5px;
+}
+
+.titre_insc {
+	margin-top : -15px;
+	margin-bottom: 20px;
+	text-align : center;
+}
+
+.btn-insc {
+	margin-left : 150px;
+	margin-top : 20px;
+}
+
+.titre_connect {
+	margin-top : 90px;
+	margin-bottom : 20px;
+	margin-left : 60px;
 }
