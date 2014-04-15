@@ -43,7 +43,6 @@ class AuthController extends Zend_Controller_Action
 						{
 							$Utilisateur_Session_Namespace = new Zend_Session_Namespace("Utilisateur");
 							$Utilisateur_Session_Namespace->Utilisateur = $this->getRequest()->getPost();
-							exec("wget -o /home/matthieu/nao/cron/cron.connexion.log http://nao/cron/test > nul 2>&1");
 							$this->redirect("/index/index");
 						}
 					}
