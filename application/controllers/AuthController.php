@@ -5,6 +5,39 @@ class AuthController extends Zend_Controller_Action
 	{
 		Zend_Auth::getInstance()->clearIdentity();
 		$this->_redirect('index/index');
+
+	}
+	
+	function inscriptionAction()
+	{
+		$formInscription = new Application_Form_Inscription();
+		$this->view->forminscription = $formInscription;
+		$auth = Zend_Auth::getInstance();
+		if($this->getRequest()->isPost())
+    	{
+    		$data = $this->getRequest()->getPost();
+    		if($formInscription->isValid($data))
+    		{
+    			$user= new User();
+    			$max = $user->getIdMax();
+    			$newUser = $user->createRow();
+    			$newUser->idUser = $max["MAX(idUser)"]+1;
+    			$newUser->mail = $formInscription->getValue('mail');
+    			$newUser->pseudo = $formInscription->getValue('pseudo');
+    			$newUser->pwd = $formInscription->getValue('pwd');
+    			$newUser->nom = $formInscription->getValue('nom');
+    			$newUser->prenom = $formInscription->getValue('prenom');
+    			$newUser->dateNaissance = $formInscription->getValue('dateNaissance');
+    			$newUser->faculte = $formInscription->getValue('faculte');
+    			$newUser->save();
+    	
+    			$this->_redirect('auth/login');
+    		}
+    		else
+    		{
+    			$this->view->forminscription = $formInscription;
+    		}
+		}
 	}
 	
 	public function loginAction()
@@ -42,7 +75,11 @@ class AuthController extends Zend_Controller_Action
 						if($resultat->isValid())
 						{
 							$Utilisateur_Session_Namespace = new Zend_Session_Namespace("Utilisateur");
+
 							$Utilisateur_Session_Namespace->Utilisateur = $this->getRequest()->getPost();
+
+							$Utilisateur_Session_Namespace->Utilisateur = $this->getRequest()->getPost();
+
 							$this->redirect("/index/index");
 						}
 					}
