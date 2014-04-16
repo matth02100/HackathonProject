@@ -16,8 +16,10 @@
 		<button class="center btn btn-primary btn-lg" data-toggle="modal" data-target="#ajoutQuestion">
   			Ajouter une question
 		</button></center>
+
 		<br /><br />
-		<?php if($nbQuestion != 0){ ?>
+
+		<?php if($nbQuestion != 0): ?>
 		<table class="center table table-striped table-hover">
   			<thead>
   				<tr>
@@ -31,14 +33,14 @@
   				<?php foreach($questions as $uneQuestion): ?>
   				<tr>
   					<td width="60%"><a href="/question/lierreponse?id=<?php echo $uneQuestion['id'] ; ?>"><?php echo $uneQuestion['intitule']; ?></a></td>
-  					<td width="20%"><?php echo $uneQuestion['type']; ?></td>
-  					<td width="20%"><?php echo $uneQuestion['point']; ?></td>
+  					<td width="15%"><?php echo $uneQuestion['type']; ?></td>
+  					<td width="15%"><?php echo $uneQuestion['point']; ?></td>
   					<td><a href="/question/supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette question ?');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a></td>
   				</tr>
   				<?php endforeach; ?>
   			</tbody>
 		</table>
-		<?php }else{ ?> <p class="center">Il n'y a aucune question d'enregistrées.</p> <?php } ?>
+		<?php else: ?> <p class="center">Il n'y a aucune question d'enregistrées pour ce DCP.</p> <?php endif; ?>
 		
 	</div>
 </div>
@@ -56,7 +58,7 @@
      	<div class="modal-body">
 			<div class="modal-body">
 			   	<label>Question :</label><br />
-			   	<textarea rows="5" placeholder="Votre question" name="question"></textarea><br />
+			   	<textarea rows="5" class="form-control" placeholder="Votre question" name="question"></textarea><br />
 			   	<label>Type :</label>
 			   	<select name="type" class="form-control">
 			   		<option value="1">TCS</option>
