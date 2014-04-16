@@ -1,0 +1,73 @@
+<?php
+	$user = $this->lesusers;
+	$nbUser = count($user);
+?>
+<div class="row content-heading title">
+	<div class="col-xs-11 col-xs-offset-1">
+		<h2>Liste des Utilisateurs</h2>
+	</div>
+</div>
+<div class="separator">
+	<span></span>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<!-- Button trigger modal --><center>
+		<button class="center btn btn-primary btn-lg" data-toggle="modal" data-target="#ajoutUser">
+  			Ajouter un utilisateur
+		</button></center>
+		<br /><br />
+		<?php if($nbUser != 0){ ?>
+		<table class="center table table-striped table-hover">
+  			<thead>
+  				<tr>
+  					<th width="30%" class="center">Nom</th>
+  					<th width="30%" class="center">Prénom</th>
+  					<th width="30%" class="center">E-mail</th>
+   					<th></th>
+  				</tr>
+  			</thead>
+  			<tbody>
+  				<?php foreach($user as $unUser): ?>
+  				<tr>
+  					<td width="30%"><a href="/user/profil/id/<?php echo $unUser['idUser']; ?>"><?php echo $unUser['nom']; ?></a></td>
+  					<td width="30%"><?php echo $unUser['prenom']; ?></td>
+  					<td width="30%"><?php echo $unUser['mail']; ?></td>
+  					<td><a href="/user/supprimer?id=<?php echo $unUser['idUser']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a></td>
+  				</tr>
+  				<?php endforeach; ?>
+  			</tbody>
+		</table>
+		<?php }else{ ?> <p class="center">Il n'y a aucune question d'enregistrées.</p> <?php } ?>
+		
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ajoutUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter un utilisateur</h4>
+      </div>
+      <form method="POST" action="/user/ajout">
+     	<div class="modal-body">
+			<div class="modal-body">
+			   	<input type="email" name="login" class="form-control" placeholder="E-mail"><br />
+    			<input type="password" class="form-control" name="pwd" placeholder="Mot de passe"><br />
+			   	<input type="text" name="nom" class="form-control" placeholder="Nom"><br />
+			   	<input type="text" name="prenom" class="form-control" placeholder="Prénom"><br />
+			   	<textarea rows="5" placeholder="Adresse (numéro, rue, code postal, ville, ...)" name="adresse"></textarea><br /><br />
+			   	<input type="text" name="dateNaissance" class="form-control" placeholder="Date de naissance, format : AAAA-MM-JJ"><br />
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	        <button type="submit" class="btn btn-success">Enregistrer</button>
+	      </div>
+      </form>
+    </div>
+  </div>
+</div>

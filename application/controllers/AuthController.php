@@ -30,6 +30,7 @@ class AuthController extends Zend_Controller_Action
     			$newUser->anneeDetude = $formInscription->getValue('year');
     			$newUser->faculte = $formInscription->getValue('facult');
     			$newUser->dateDerniereConnexion = date('y-m-d');
+    			$newUser->role = 0;
     			$newUser->save();
     			$this->_redirect('auth/login');
     		}
