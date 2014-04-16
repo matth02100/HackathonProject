@@ -5,37 +5,39 @@
 		<script type="text/javascript" src="<?= $this->baseUrl('/js/jquery.min.js');?>"></script>
 		<link href="<?= $this->baseUrl('/css/style.css');?>" media="screen" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="<?= $this->baseUrl('js/jwplayer/jwplayer.js')?>"></script>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link href="<?= $this->baseUrl('/css/bootstrap.min.css')?>" media="screen" rel="stylesheet" type="text/css" />
 	</head>
 
 	<body>
 		<header>
-			<div class="header_wrapper">
+			<nav class="wrapper-header">
 				<div class="container-fluid">
 					<div class="row-fluid">
-						<ul class="user_nav">
-							<li>
 							<?php $auth = Zend_Auth::getInstance();?>
 							<?php if ($auth->hasIdentity()): ?>
-								<a href="<?= $this->baseUrl('auth/logout')?>" rel="tooltip" class="btn tips icon_logout" data-original-title="Logout"><i class="icon-off"></i> Se déconnecter</a>
+								<a href="<?= $this->baseUrl('auth/logout')?>" rel="tooltip" class="btn btn-primary tips icon_logout btn-connect" data-original-title="Logout"><i class="icon-off"></i> Se déconnecter</a>
 							<?php endif; ?>
-							</li>
-						</ul>
 					</div>
 				</div>
-			</div>
+			</nav>
 		</header>
-		<div class="container-fluid fond">
-			<div class="row-fluid">
+		<div class="container-fluid">
+			<div class="row-fluid body-container">
 				<div class="span12">
 					<div class="wrapper">
-						<?php if ($auth->hasIdentity()): ?>
-							<?= $this->placeholder('menu'); ?>
-						<?php endif ; ?>
-						<div class="content_wrapper">
+						<div class="menu_gauche">
+							<?php if ($auth->hasIdentity()): ?>
+								<?= $this->placeholder('menu'); ?>
+							<?php endif ; ?>
+						</div>
+						<div class="content_wrapper contenu_index">
 							<div class="content">
 								<?= $this->layout()->content; ?>
 							</div>
+						</div>
+						<div class="menu_droite">
+							menu de droite
+							blabla
 						</div>
 					</div>
 				</div>
@@ -52,6 +54,6 @@
 				</div>
 			</div>
 		</footer>
-		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<?= $this->baseUrl('/js/bootstrap.min.js');?>"></script>
 	</body>
 </html>

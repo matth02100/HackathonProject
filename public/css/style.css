@@ -27,6 +27,8 @@ nav {
 footer {
 	height : 100px;
 	border : solid yellow 3px;
+	position : relative;
+	/*margin-top : 500px;*/
 }
 
 .login {
@@ -67,4 +69,43 @@ footer {
 	margin-top : 90px;
 	margin-bottom : 20px;
 	margin-left : 60px;
+}
+
+.body-container {
+	margin-top : 70px;
+}
+
+.menu_gauche {
+	/*display : inline-block;*/
+	width : 175px;
+	border : solid black 1px;
+	margin-left : -16px;
+	margin-top : -20px;
+	position : relative;
+	min-height : 500px;
+
+}
+
+.contenu_index {
+	/*display : inline-block;*/
+	position : relative;
+	border : solid black 1px;
+	width : 980px;
+	margin-top : -500px;
+	margin-left: 170px;
+	min-height : 500px;
+}
+
+.menu_droite {
+	/*display : inline-block;*/
+	position : relative;
+	border : solid black 1px;
+	width : 175px;
+	margin-top : -500px;
+	margin-left : 1160px;
+	min-height : 500px;
+}
+
+.affichage {
+	display : inline-block;
 }

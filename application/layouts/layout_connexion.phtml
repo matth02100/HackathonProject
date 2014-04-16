@@ -14,7 +14,7 @@
 					<div class="row-fluid">
 						<?php $auth = Zend_Auth::getInstance();?>
 						<?php if ($auth->hasIdentity()): ?>
-							<a href="<?= $this->baseUrl('auth/logout')?>" rel="tooltip" class="btn tips icon_logout" data-original-title="Logout"><i class="icon-off"></i> Se déconnecter</a>	
+							<a href="<?= $this->baseUrl('auth/logout')?>" rel="tooltip" class="btn btn-primary tips icon_logout btn-connect" data-original-title="Logout"><i class="icon-off"></i> Se déconnecter</a>	
 						<?php else: ?>
 							<a href="#" rel="tooltip" class="btn btn-primary btn-connect" data-original-title="Login">Connexion</a>
 						<?php endif; ?>

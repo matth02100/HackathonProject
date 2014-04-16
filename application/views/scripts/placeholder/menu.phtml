@@ -8,13 +8,19 @@ $ctr = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
 $this->placeholder('menu')->captureStart(); 
 ?>
 
+
 <div class="sidebar_navigation gradient center">
-	<ul>
-		<li <? if($ctr == "index" && $act == "index"): ?> <?php endif; ?>>
-			<a href="<?= $this->baseUrl('index/index'); ?>">Test</a>
-		</li>
+	<ul class="nav nav-pills nav-stacked">
+		<li><a href="<?= $this->baseUrl('index/index'); ?>">Accueil</a></li>
+		<li><a href="<?= $this->baseUrl('/users/index'); ?>">Gestion des utilisateurs</a></li>
+		<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 1</a></li>
+		<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 2</a></li>
+		<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 3</a></li>
+		<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 4</a></li>
+		
 	</ul>
 </div>
 
 <?php $this->placeholder('menu')->captureEnd();
  
+// /users/index
