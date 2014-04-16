@@ -24,13 +24,13 @@ class AuthController extends Zend_Controller_Action
     			$newUser->idUser = $max["MAX(idUser)"]+1;
     			$newUser->mail = $formInscription->getValue('mail');
     			$newUser->pseudo = $formInscription->getValue('pseudo');
-    			$newUser->pwd = $formInscription->getValue('pwd');
-    			$newUser->nom = $formInscription->getValue('nom');
-    			$newUser->prenom = $formInscription->getValue('prenom');
-    			$newUser->dateNaissance = $formInscription->getValue('dateNaissance');
-    			$newUser->faculte = $formInscription->getValue('faculte');
+    			$newUser->pwd = $formInscription->getValue('password');
+    			$newUser->nom = $formInscription->getValue('name');
+    			$newUser->prenom = $formInscription->getValue('surname');
+    			$newUser->anneeDetude = $formInscription->getValue('year');
+    			$newUser->faculte = $formInscription->getValue('facult');
+    			$newUser->dateDerniereConnexion = date('y-m-d');
     			$newUser->save();
-    	
     			$this->_redirect('auth/login');
     		}
     		else
@@ -38,6 +38,7 @@ class AuthController extends Zend_Controller_Action
     			$this->view->forminscription = $formInscription;
     		}
 		}
+		echo'bm';
 	}
 	
 	public function loginAction()
@@ -59,11 +60,11 @@ class AuthController extends Zend_Controller_Action
 					try 
 					{
 						$f = new Zend_Filter_StripTags();
-						$login = $f->filter($formConnexion->getValue('login'));
-						$password = $f->filter($formConnexion->getValue('motDePasse'));
+						$login = $f->filter($formConnexion->getValue('mail'));
+						$password = $f->filter($formConnexion->getValue('pwd'));
 						//charger et parametrer l'adapteur
 						//on peut passer un dernier parametre 'MD5(?)'
-						$dbAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table::getDefaultAdapter(),'user','login','motDePasse');
+						$dbAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table::getDefaultAdapter(),'user','mail','pwd');
 						 
 						//charger les logs à vérifier
 						$dbAdapter->setIdentity($login);
@@ -79,8 +80,9 @@ class AuthController extends Zend_Controller_Action
 							$Utilisateur_Session_Namespace->Utilisateur = $this->getRequest()->getPost();
 
 							$Utilisateur_Session_Namespace->Utilisateur = $this->getRequest()->getPost();
-
-							$this->redirect("/index/index");
+							//$user = new User();
+							//$user->updateDateConnexion(date('y-m-d'));
+							$this->redirect('/index/index');
 						}
 					}
 					catch(Zend_Exception $e)
