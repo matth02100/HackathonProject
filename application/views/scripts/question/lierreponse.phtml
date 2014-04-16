@@ -1,0 +1,81 @@
+<?php
+	$laquestion = $this->laquestion;
+	$lesreponses = $this->lesreponses;
+	$nbReponse = count($lesreponses);
+?>
+<div class="row content-heading title">
+	<div class="col-xs-11 col-xs-offset-1">
+		<h2>Liste des Réponses</h2>
+	</div>
+</div>
+<div class="separator">
+	<span></span>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<center>
+			<!-- Button trigger modal -->
+			<button class="center btn btn-primary btn-lg" data-toggle="modal" data-target="#ajoutReponse">
+	  			Ajouter une réponse
+			</button><br /><br />
+			<p class="center" style="color:green;font-weight:bold;">Réponses possibles pour la question :<br />
+				<?php echo $laquestion['intitule'] ; ?>
+			</p>
+		</center>
+		<br /><br />
+		<?php if($nbReponse != 0){ ?>
+		<table class="center table table-striped table-hover">
+  			<thead>
+  				<tr>
+  					<th width="70%" class="center">Réponse</th>
+  					<th width="20%" class="center">Valeur en point(s)</th>
+  					<th></th>
+  				</tr>
+  			</thead>
+  			<tbody>
+  				<?php foreach($lesreponses as $uneReponse): ?>
+  				<tr>
+  					<td width="70%"><?php echo $uneReponse['reponse']; ?></td>
+  					<td width="20%"><?php echo $uneReponse['point']; ?></td>
+  					<td><a href="/question/supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette question ?');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a></td>
+  				</tr>
+  				<?php endforeach; ?>
+  			</tbody>
+		</table>
+		<?php }else{ ?> <p class="center">Il n'y a aucune réponse enregistrée pour cette question.</p> <?php } ?>
+		
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ajoutReponse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter une réponse</h4>
+      </div>
+      <form method="POST" action="/question/ajoutreponse">
+     	<div class="modal-body">
+			<div class="modal-body">
+				<input type="hidden" name="idQuestion" value="<?php echo $laquestion['id'] ; ?>" />
+			   	<label>Réponse :</label><br />
+			   	<textarea rows="5" placeholder="Une réponse à la question" name="reponse"></textarea><br />
+
+			   	<label>Valeur en point(s) :</label>
+			   	<select name="point" class="form-control">
+			   		<?php for($i=0;$i<=$laquestion['point'];$i++): ?>
+				   	<option value="<?php echo $i ; ?>"><?php echo $i ; ?></option>
+				   	<?php endfor; ?>
+			   	</select><br />
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	        <button type="submit" class="btn btn-success">Enregistrer</button>
+	      </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -24,23 +24,23 @@ class DcpController extends Zend_Controller_Action
 	
 	public function ajoutAction()
 	{
-		$formAjoutQuestion = new Application_Form_Question();
-		$this->view->formajoutquestion = $formAjoutQuestion;
+		$formAjoutDcp = new Application_Form_Dcp();
+		$this->view->formajoutdcp = $formAjoutDcp;
 		if($this->getRequest()->isPost())
 		{
 			$data = $this->getRequest()->getPost();
-			if($formAjoutQuestion->isValid($data))
+			if($formAjoutDcp->isValid($data))
 			{
-				$question= new Question();
+				/*$dcp= new Dcp();
 				$max = $question->getIdMax();
 				$newQuestion = $question->createRow();
 				$newQuestion->id = $max["MAX(id)"]+1;
 				$newQuestion->intitule = $formAjoutQuestion->getValue('question');
 				$newQuestion->type = $formAjoutQuestion->getValue('type');
 				$newQuestion->point = $formAjoutQuestion->getValue('point');
-				$newQuestion->save();
+				$newQuestion->save();*/
 				
-				$this->_redirect('question/index');
+				$this->_redirect('dcp/index');
 			}
 			else
 			{
