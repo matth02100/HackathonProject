@@ -1,0 +1,84 @@
+<?php
+	$dcps = $this->dcps;
+?>
+
+<div class="row content-heading title">
+	<div class="col-xs-11 col-xs-offset-1">
+		<h2>Liste des DCP : </h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<button class="center btn btn-primary btn-lg" data-toggle="modal" data-target="#ajoutDcp">
+			Ajouter un DCP
+		</button>
+
+		<br/><br/>
+
+		<?php if ($dcps): ?>
+			<div class="table-responsive">
+				<table class="center table table-striped table-hover">
+					<thead>
+						<tr>
+							<th class="center">Nom</th>
+							<th class="center">Cas clinique</th>
+							<th class="center">Image</th>
+							<th class="center">Vidéo</th>
+							<th class="center">Son</th>
+							<th class="center">Catégorie</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<?php foreach ($dcps as $dcp): ?>
+							<tr>
+								<td><a href="/dcp/questions/<?= $dcp['id']; ?>"><?= $dcp['nom']; ?></a></td>
+								<td><?= $dcp['casClinique']; ?></a></td>
+								<td><?= $dcp['image']; ?></td>
+								<td><?= $dcp['video']; ?></td>
+								<td><?= $dcp['son']; ?></td>
+								<td><?= $dcp['idCategorie']; ?></td>
+								<td><a href="/dcp/supprimer?id=<?= $dcp['id']; ?>" onClick="return confirm('Etes vous sur de vouloir supprimer ce DCP ?');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"> Supprimer</span></a></td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+		<?php else: ?>
+			<p class="center">Il n'y a aucun DCP pour le moment.</p>
+		<?php endif; ?>
+	</div>
+</div>
+
+
+<!-- MODAL -->
+<div class="modal fade" id="ajoutDcp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Ajouter un DCP</h4>
+			</div>
+
+			<form method="POST" action="/dcp/ajout">
+				<div class="modal-body">
+					<textarea rows="5" class="form-control" placeholder="Cas clinique" name="casClinique"></textarea><br/>
+					<input type="text" class="form-control" placeholder="Image" name="image" /><br/>
+					<input type="text" class="form-control" placeholder="Vidéo" name="video" /><br/>
+					<input type="text" class="form-control" placeholder="Son" name="son" /><br/>
+					<select class="form-control">
+						<option>Catégorie 1</option>
+						<option>Catégorie 2</option>
+					</select>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+					<button type="button" class="btn btn-success">Enregistrer</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

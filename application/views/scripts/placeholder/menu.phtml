@@ -25,6 +25,12 @@ $this->placeholder('menu')->captureStart();
 					<li><a href="<?= $this->baseUrl('/user/index'); ?>">Gestion des utilisateurs</a></li>
 				<?php endif; ?>
 
+				<?php if ($act == 'index' && $ctr == 'dcp'): ?>
+					<li class="active"><a href="<?= $this->baseUrl('/dcp/index'); ?>">Gestion des DCP</a></li>
+				<?php else: ?>
+					<li><a href="<?= $this->baseUrl('/dcp/index'); ?>">Gestion des DCP</a></li>
+				<?php endif; ?>
+
 				<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 1</a></li>
 				<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 2</a></li>
 				<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 3</a></li>
