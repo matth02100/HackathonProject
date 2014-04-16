@@ -109,3 +109,11 @@ footer {
 .affichage {
 	display : inline-block;
 }
+
+.section_footer {
+	margin-top : 50px;
+}
+
+.footer_modal {
+	margin-top : -30px;
+}

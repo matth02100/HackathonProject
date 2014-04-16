@@ -13,8 +13,18 @@ $this->placeholder('menu')->captureStart();
 	<div class="panel-default">
 		<div class="panel-body">
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="<?= $this->baseUrl('index/index'); ?>">Accueil</a></li>
-				<li><a href="<?= $this->baseUrl('/user/index'); ?>">Gestion des utilisateurs</a></li>
+				<?php if ($act == 'index' && $ctr == 'index'): ?>
+					<li class="active"><a href="<?= $this->baseUrl('index/index'); ?>">Accueil</a></li>
+				<?php else: ?>
+					<li><a href="<?= $this->baseUrl('index/index'); ?>">Accueil</a></li>
+				<?php endif; ?>
+
+				<?php if ($act == 'index' && $ctr == 'user'): ?>
+					<li class="active"><a href="<?= $this->baseUrl('/user/index'); ?>">Gestion des utilisateurs</a></li>
+				<?php else: ?>
+					<li><a href="<?= $this->baseUrl('/user/index'); ?>">Gestion des utilisateurs</a></li>
+				<?php endif; ?>
+
 				<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 1</a></li>
 				<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 2</a></li>
 				<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 3</a></li>
@@ -26,5 +36,3 @@ $this->placeholder('menu')->captureStart();
 </div>
 
 <?php $this->placeholder('menu')->captureEnd();
- 
-// /users/index
