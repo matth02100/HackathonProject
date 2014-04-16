@@ -1,0 +1,85 @@
+<?php
+	$questions = $this->lesquestions;
+	$nbQuestion = count($questions);
+?>
+<div class="row content-heading title">
+	<div class="col-xs-11 col-xs-offset-1">
+		<h2>Liste des questions</h2>
+	</div>
+</div>
+<div class="separator">
+	<span></span>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<!-- Button trigger modal --><center>
+		<button class="center btn btn-primary btn-lg" data-toggle="modal" data-target="#ajoutQuestion">
+  			Ajouter une question
+		</button></center>
+
+		<br /><br />
+
+		<?php if($nbQuestion != 0): ?>
+		<table class="center table table-striped table-hover">
+  			<thead>
+  				<tr>
+  					<th width="60%" class="center">Intitulé</th>
+  					<th width="15%" class="center">Type</th>
+  					<th width="15%" class="center">Valeur en point(s)</th>
+  					<th></th>
+  				</tr>
+  			</thead>
+  			<tbody>
+  				<?php foreach($questions as $uneQuestion): ?>
+  				<tr>
+  					<td width="60%"><a href="/question/lierreponse?id=<?php echo $uneQuestion['id'] ; ?>"><?php echo $uneQuestion['intitule']; ?></a></td>
+  					<td width="15%"><?php echo $uneQuestion['type']; ?></td>
+  					<td width="15%"><?php echo $uneQuestion['point']; ?></td>
+  					<td><a href="/question/supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette question ?');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a></td>
+  				</tr>
+  				<?php endforeach; ?>
+  			</tbody>
+		</table>
+		<?php else: ?> <p class="center">Il n'y a aucune question d'enregistrées pour ce DCP.</p> <?php endif; ?>
+		
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ajoutQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter une question</h4>
+      </div>
+      <form method="POST" action="/question/ajout">
+     	<div class="modal-body">
+			<div class="modal-body">
+			   	<label>Question :</label><br />
+			   	<textarea rows="5" class="form-control" placeholder="Votre question" name="question"></textarea><br />
+			   	<label>Type :</label>
+			   	<select name="type" class="form-control">
+			   		<option value="1">TCS</option>
+			   		<option value="2">Texte libre</option>
+			   		<option value="3">Réponses multiples</option>
+			   	</select><br />
+			   	<label>Valeur en point(s) :</label>
+			   	<select name="point" class="form-control">
+				   	<option value="1">1</option>
+				   	<option value="2">2</option>
+				   	<option value="3">3</option>
+				   	<option value="4">4</option>
+				   	<option value="5">5</option>
+			   	</select><br />
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	        <button type="submit" class="btn btn-success">Enregistrer</button>
+	      </div>
+      </form>
+    </div>
+  </div>
+</div>

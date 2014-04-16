@@ -1,0 +1,67 @@
+<?php
+	$categs = $this->categories;
+?>
+
+<div class="row content-heading title">
+	<div class="col-xs-11 col-xs-offset-1">
+		<h2>Liste des catégories : </h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<button class="center btn btn-primary btn-lg" data-toggle="modal" data-target="#ajoutCateg">
+			Ajouter une catégorie
+		</button>
+
+		<br/><br/>
+
+		<?php if ($categs): ?>
+			<div class="table-responsive">
+				<table class="center table table-striped table-hover">
+					<thead>
+						<tr>
+							<th class="center">Nom</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<?php foreach ($categs as $categ): ?>
+							<tr>
+								<td><?= $categ['nom']; ?></td>
+								<td><a href="/categorie/supprimer?id=<?= $categ['id']; ?>" onClick="return confirm('Etes vous sur de vouloir supprimer cette catégorie ?');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"> Supprimer</span></a></td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+		<?php else: ?>
+			<p class="center">Il n'y a aucune catégorie pour le moment.</p>
+		<?php endif; ?>
+	</div>
+</div>
+
+
+<!-- MODAL -->
+<div class="modal fade" id="ajoutCateg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Ajouter une catégorie</h4>
+			</div>
+
+			<form method="POST" action="/categorie/ajout">
+				<div class="modal-body">
+					<input type="text" class="form-control" placeholder="Nom de la catégorie" name="name"><br/>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+					<button type="button" class="btn btn-success">Enregistrer</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
