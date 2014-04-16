@@ -16,6 +16,7 @@ nav {
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #5E5C5A;
+	z-index : 1;
 }
 
 .lecontenu {
@@ -25,10 +26,8 @@ nav {
 
 
 footer {
-	height : 100px;
-	border : solid yellow 3px;
 	position : relative;
-	/*margin-top : 500px;*/
+	margin-top : 20px;
 }
 
 .login {
@@ -76,34 +75,35 @@ footer {
 }
 
 .menu_gauche {
-	/*display : inline-block;*/
 	width : 175px;
-	border : solid black 1px;
 	margin-left : -16px;
 	margin-top : -20px;
 	position : relative;
 	min-height : 500px;
-
+	padding-top: 15px;
+	background-color: #D4CFC5;
+	border-bottom-right-radius: 33px;
 }
 
 .contenu_index {
-	/*display : inline-block;*/
 	position : relative;
-	border : solid black 1px;
 	width : 980px;
 	margin-top : -500px;
 	margin-left: 170px;
 	min-height : 500px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .menu_droite {
-	/*display : inline-block;*/
 	position : relative;
-	border : solid black 1px;
 	width : 175px;
-	margin-top : -500px;
+	margin-top : -530px;
 	margin-left : 1160px;
 	min-height : 500px;
+	padding-top : 15px;
+	background-color: #D4CFC5;
+	border-bottom-left-radius: 33px;
 }
 
 .affichage {

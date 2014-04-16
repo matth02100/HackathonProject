@@ -24,7 +24,7 @@
 		<div class="container-fluid">
 			<div class="row-fluid body-container">
 				<div class="span12">
-					<div class="wrapper">
+					<div class="wrapper affichage">
 						<div class="menu_gauche">
 							<?php if ($auth->hasIdentity()): ?>
 								<?= $this->placeholder('menu'); ?>
@@ -36,8 +36,9 @@
 							</div>
 						</div>
 						<div class="menu_droite">
-							menu de droite
-							blabla
+							<?php if ($auth->hasIdentity()): ?>
+								<?= $this->placeholder('menudroite'); ?>
+							<?php endif ; ?>
 						</div>
 					</div>
 				</div>
