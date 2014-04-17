@@ -18,7 +18,7 @@ class Propositionquestiondcp extends Zend_Db_Table_Abstract
 	public function selectAll($idDcp,$idQuestion)
 	{
 		$db = Zend_Db_Table::getDefaultAdapter();
-		$requete = $this->select()->from($this)->where('idDcp='.$idDcp)->where('idQuestion='.$idQuestion);
+		$requete = $this->select()->from($this)->where('idDcp='.$idDcp)->where('idQuestionDcp='.$idQuestion);
 		return $db->query($requete)->fetchAll();
 	}
 	/*public function selectOne($id)

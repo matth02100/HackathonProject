@@ -24,12 +24,6 @@ class DcpController extends Zend_Controller_Action
 		 $this->view->categories = $categorie->selectAll();
 	}
 	
-	public function reponsedcpAction()
-	{
-		 $reponsedcp = new Propositionquestiondcp();
-		 $this->view->reponsesdcp = $reponsedcp->selectAll($_GET['idDcp'],$_GET['idQuestion']);
-	}
-	
 	public function ajoutAction()
 	{
 		$formAjoutDcp = new Application_Form_Dcp();
@@ -69,6 +63,13 @@ class DcpController extends Zend_Controller_Action
     		$ledcp->delete();
 			$this->_redirect('dcp/index');
 		}
+	}
+	
+	/**********************          Partie Réponse            ***********************/
+	public function reponsedcpAction()
+	{
+		 $reponsedcp = new Propositionquestiondcp();
+		 $this->view->reponsesdcp = $reponsedcp->selectAll($_GET['idDcp'],$_GET['idQuestion']);
 	}
 	
 	public function ajoutreponseAction()

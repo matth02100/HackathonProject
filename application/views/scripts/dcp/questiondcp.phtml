@@ -32,7 +32,7 @@
   			<tbody>
   				<?php foreach($questions as $uneQuestion): ?>
   				<tr>
-  					<td width="60%"><a href="/dcp/reponse?idQuestion=<?= $uneQuestion['id'] ; ?>&idDcp=<?= $_GET['idDcp'];?>"><?= $uneQuestion['intitule']; ?></a></td>
+  					<td width="60%"><a href="/dcp/reponsedcp?idQuestion=<?= $uneQuestion['id'] ; ?>&idDcp=<?= $_GET['idDcp'];?>"><?= $uneQuestion['intitule']; ?></a></td>
   					<td width="15%"><?= $uneQuestion['idTypeQuestion']; ?></td>
   					<td width="15%"><?= $uneQuestion['nbPoint']; ?></td>
   					<td><a href="/question/supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette question ?');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a></td>
