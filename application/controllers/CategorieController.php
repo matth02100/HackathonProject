@@ -51,7 +51,7 @@ class CategorieController extends Zend_Controller_Action
 	{
 		if(isset($_GET['id']))
 		{
-			$categorie = new Dcp();
+			$categorie = new Categorie();
     		$lacategorie = $categorie->find($_GET['id'])->current();
     		$lacategorie->delete();
 			$this->_redirect('categorie/index');
