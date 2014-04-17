@@ -14,33 +14,37 @@ $this->placeholder('menu')->captureStart();
 		<div class="panel-body">
 			<ul class="nav nav-pills nav-stacked">
 				<?php if ($act == 'index' && $ctr == 'index'): ?>
-					<li class="active"><a href="<?= $this->baseUrl('index/index'); ?>">Accueil</a></li>
+					<li class="active">
 				<?php else: ?>
-					<li><a href="<?= $this->baseUrl('index/index'); ?>">Accueil</a></li>
+					<li>
 				<?php endif; ?>
+					<a href="<?= $this->baseUrl('index/index'); ?>">Accueil</a></li>
 
 				<?php if ($act == 'index' && $ctr == 'user'): ?>
-					<li class="active"><a href="<?= $this->baseUrl('/user/index'); ?>">Gestion des utilisateurs</a></li>
+					<li class="active">
 				<?php else: ?>
-					<li><a href="<?= $this->baseUrl('/user/index'); ?>">Gestion des utilisateurs</a></li>
+					<li>
 				<?php endif; ?>
+					<a href="<?= $this->baseUrl('/user/index'); ?>">Gestion des utilisateurs</a></li>
 
 				<?php if ($act == 'index' && $ctr == 'dcp'): ?>
-					<li class="active"><a href="<?= $this->baseUrl('/dcp/index'); ?>">Gestion des DCP</a></li>
+					<li class="active">
 				<?php else: ?>
-					<li><a href="<?= $this->baseUrl('/dcp/index'); ?>">Gestion des DCP</a></li>
+					<li>
 				<?php endif; ?>
+					<a href="<?= $this->baseUrl('/dcp/index'); ?>">Gestion des DCP</a></li>
 
 				<?php if ($act == 'index' && $ctr == 'categorie'): ?>
-					<li class="active"><a href="<?= $this->baseUrl('/categorie/index'); ?>">Gestion des catégories</a></li>
+					<li class="active">
 				<?php else: ?>
-					<li><a href="<?= $this->baseUrl('/categorie/index'); ?>">Gestion des catégories</a></li>
+					<li>
 				<?php endif; ?>
+					<a href="<?= $this->baseUrl('/categorie/index'); ?>">Gestion des catégories</a></li>
 
-				<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 1</a></li>
-				<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 2</a></li>
-				<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 3</a></li>
-				<li><a href="<?= $this->baseUrl('/users/index'); ?>">Menu 4</a></li>
+				<li><a href="<?= $this->baseUrl('/user/index'); ?>">Menu 1</a></li>
+				<li><a href="<?= $this->baseUrl('/user/index'); ?>">Menu 2</a></li>
+				<li><a href="<?= $this->baseUrl('/user/index'); ?>">Menu 3</a></li>
+				<li><a href="<?= $this->baseUrl('/user/index'); ?>">Menu 4</a></li>
 				
 			</ul>
 		</div>
