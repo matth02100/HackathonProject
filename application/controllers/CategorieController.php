@@ -32,8 +32,8 @@ class CategorieController extends Zend_Controller_Action
 			if($formAjoutCategorie->isValid($data))
 			{
 				$categorie= new Categorie();
-				$max = $dcp->getIdMax();
-				$newCategorie = $dcp->createRow();
+				$max = $categorie->getIdMax();
+				$newCategorie = $categorie->createRow();
 				$newCategorie->id = $max["MAX(id)"]+1;
 				$newCategorie->nom = $formAjoutCategorie->getValue('name');
 				$newCategorie->save();
