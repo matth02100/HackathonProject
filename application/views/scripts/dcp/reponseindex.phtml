@@ -1,0 +1,88 @@
+<?php
+	$reponses = $this->responsedcp;
+	$question = $this->question; 
+?>
+
+<div class="row content-heading title">
+	<div class="col-xs-11 col-xs-offset-1">
+		<h2>Liste des réponses :</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<button class="center btn btn-primary btn-lg" data-toggle="modal" data-target="#ajoutRep">
+			Ajouter une réponse
+		</button>
+
+		<br/><br/>
+
+		<?php if($reponses): ?>
+			<div class="table-responsive">
+				<table class="center table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Intitulé</th>
+							<th>Nombre de point</th>
+							<th>Effet sur point</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<?php foreach($reponses as $reponse): ?>
+							<tr>
+								<td><?= $reponse->intitule; ?></td>
+								<td><?= $reponse->nbPoint; ?></td>
+								<td><?= $reponse->effetSurPoint; ?></td>
+								<td>
+									<a href="/dcp/suppReponse/<?= $reponse->id; ?>" onClick="return confirm('Etes vous sur de vouloir supprimer cette réponse ?');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"> Supprimer</span></a>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+		<?php else: ?>
+			<p class="center">Il n'y a aucune réponse pour le moment.</p>
+		<?php endif; ?>
+	</div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="ajoutRep" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Ajouter une réponse</h4>
+			</div>
+
+			<form method="POST" action="/dcp/ajoutReponse">
+				<div class="modal-body">
+					<input type="hidden" value="<?= $question->id; ?>" />
+					<input type="text" class="form-control input_reponse" placeholder="Votre réponse" name="rep[1]"><br/>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+					<button type="button" class="btn btn-info btn-add">Ajouter plus de réponse</button>
+					<button type="submit" class="btn btn-success">Enregistrer</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.btn-add').on('click', function(e){
+			nombre = $('.input_reponse').length;
+			if (nombre >= 12){
+				alert('Vous ne pouvez plus ajouter de réponse.');
+			} else {
+				$('.modal-body').append('<input type="text" class="form-control input_reponse" placeholder="Votre réponse" name="rep['+nombre+1+']" /><br/>');
+			}
+		});
+	});
+</script>
