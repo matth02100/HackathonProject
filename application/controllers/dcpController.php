@@ -5,6 +5,7 @@ class DcpController extends Zend_Controller_Action
 	public function postDispatch()
 	{
 		$this->view->render('placeholder/menu.phtml');
+		$this->view->render('placeholder/menudroite.phtml');
 	}
 
 	public function init()
@@ -20,6 +21,23 @@ class DcpController extends Zend_Controller_Action
 	{
 		 $dcp = new Dcp();
 		 $this->view->dcps = $dcp->selectAll();
+		 $categorie = new Categorie();
+		 $this->view->categories = $categorie->selectAll();
+	}
+	
+	public function questiondcpAction()
+	{
+		if(isset($_GET['idDcp']))
+		{
+			$questiondcp = new Questiondcp();
+			$this->view->questionsdcp = $questiondcp->selectAll($_GET['idDcp']);
+		}
+	}
+	
+	public function reponsedcpAction()
+	{
+		 $reponsedcp = new Propositionquestiondcp();
+		 $this->view->reponsesdcp = $reponsedcp->selectAll($_GET['idDcp'],$_GET['idQuestion']);
 	}
 	
 	public function ajoutAction()
@@ -31,20 +49,23 @@ class DcpController extends Zend_Controller_Action
 			$data = $this->getRequest()->getPost();
 			if($formAjoutDcp->isValid($data))
 			{
-				/*$dcp= new Dcp();
-				$max = $question->getIdMax();
-				$newQuestion = $question->createRow();
-				$newQuestion->id = $max["MAX(id)"]+1;
-				$newQuestion->intitule = $formAjoutQuestion->getValue('question');
-				$newQuestion->type = $formAjoutQuestion->getValue('type');
-				$newQuestion->point = $formAjoutQuestion->getValue('point');
-				$newQuestion->save();*/
+				$dcp= new Dcp();
+				$max = $dcp->getIdMax();
+				$newDcp = $dcp->createRow();
+				$newDcp->id = $max["MAX(id)"]+1;
+				$newDcp->nom = $formAjoutDcp->getValue('name');
+				$newDcp->casClinique = $formAjoutDcp->getValue('casClinique');
+				$newDcp->image = $formAjoutDcp->getValue('image');
+				$newDcp->son = $formAjoutDcp->getValue('son');
+				$newDcp->video = $formAjoutDcp->getValue('video');
+				$newDcp->idCategorie = $formAjoutDcp->getValue('idCategorie');
+				$newDcp->save();
 				
 				$this->_redirect('dcp/index');
 			}
 			else
 			{
-				$this->view->formajoutquestion = $formAjoutQuestion;
+				$this->view->formajoutquestion = $formAjoutDcp;
 			}
 		}
 	}
@@ -53,23 +74,10 @@ class DcpController extends Zend_Controller_Action
 	{
 		if(isset($_GET['id']))
 		{
-			$question = new Question();
-    		$laquestion = $question->find($_GET['id'])->current();
-    		$laquestion->delete();
-			$this->_redirect('question/index');
-		}
-	}
-	
-	public function lierreponseAction()
-	{
-		if(isset($_GET['id']))
-		{
-			$question = new Question();
-			$laquestion = $question->selectOne($_GET['id']);
-			$this->view->laquestion = $laquestion;
-			$reponse = new Reponse();
-			$lesreponses = $reponse->selectReponse($_GET['id']);
-			$this->view->lesreponses = $lesreponses;
+			$dcp = new Dcp();
+    		$ledcp = $dcp->find($_GET['id'])->current();
+    		$ledcp->delete();
+			$this->_redirect('dcp/index');
 		}
 	}
 	
