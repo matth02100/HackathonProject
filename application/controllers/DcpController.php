@@ -20,6 +20,23 @@ class DcpController extends Zend_Controller_Action
 	{
 		 $dcp = new Dcp();
 		 $this->view->dcps = $dcp->selectAll();
+		 $categorie = new Categorie();
+		 $this->view->categories = $categorie->selectAll();
+	}
+	
+	public function questiondcpAction()
+	{
+		if(isset($_GET['idDcp']))
+		{
+			$questiondcp = new Questiondcp();
+			$this->view->questionsdcp = $questiondcp->selectAll($_GET['idDcp']);
+		}
+	}
+	
+	public function reponsedcpAction()
+	{
+		 $reponsedcp = new Propositionquestiondcp();
+		 $this->view->reponsesdcp = $reponsedcp->selectAll($_GET['idDcp'],$_GET['idQuestion']);
 	}
 	
 	public function ajoutAction()

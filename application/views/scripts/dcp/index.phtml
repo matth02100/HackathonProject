@@ -52,7 +52,7 @@
 	</div>
 </div>
 
-
+<?php $categories = $this->categories; ?>
 <!-- MODAL -->
 <div class="modal fade" id="ajoutDcp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -70,14 +70,15 @@
 					<input type="text" class="form-control" placeholder="Vidéo" name="video" /><br/>
 					<input type="text" class="form-control" placeholder="Son" name="son" /><br/>
 					<select class="form-control">
-						<option>Catégorie 1</option>
-						<option>Catégorie 2</option>
+						<?php foreach ($categories as $categorie):?>
+						<option value="<?= $categorie['id'] ;?>"><?= $categorie['nom'] ;?></option>
+						<?php endforeach; ?>
 					</select>
 				</div>
 
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-					<button type="button" class="btn btn-success">Enregistrer</button>
+					<input type="submit" class="btn btn-success" value="Enregistrer" />
 				</div>
 			</form>
 		</div>
