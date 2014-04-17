@@ -25,10 +25,10 @@ class Questiondcp extends Zend_Db_Table_Abstract
 		return $db->query($requete)->fetch();
 	}*/
 
-	public function getIdMax()
+	public function getIdMax($idDcp)
 	{
 		$db = Zend_Db_Table::getDefaultAdapter();
-		$requete = 'SELECT MAX(id) FROM questionDcp';
+		$requete = 'SELECT MAX(id) FROM questionDcp Where idDcp='.$idDcp;
 		return $db->query($requete)->fetch();
 	}
 }

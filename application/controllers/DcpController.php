@@ -24,15 +24,6 @@ class DcpController extends Zend_Controller_Action
 		 $this->view->categories = $categorie->selectAll();
 	}
 	
-	public function questiondcpAction()
-	{
-		if(isset($_GET['idDcp']))
-		{
-			$questiondcp = new Questiondcp();
-			$this->view->questionsdcp = $questiondcp->selectAll($_GET['idDcp']);
-		}
-	}
-	
 	public function reponsedcpAction()
 	{
 		 $reponsedcp = new Propositionquestiondcp();
@@ -64,7 +55,7 @@ class DcpController extends Zend_Controller_Action
 			}
 			else
 			{
-				$this->view->formajoutquestion = $formAjoutDcp;
+				$this->view->formajoutdcp = $formAjoutDcp;
 			}
 		}
 	}
@@ -108,5 +99,33 @@ class DcpController extends Zend_Controller_Action
 				echo $formAjoutReponse;
 			}
 		}
+	}
+	
+	/**********************          Partie Question            ***********************/
+	public function questiondcpAction()
+	{
+		if(isset($_GET['idDcp']))
+		{
+			$questiondcp = new Questiondcp();
+			$this->view->questionsdcp = $questiondcp->selectAll($_GET['idDcp']);
+		}
+	}
+	
+	public function ajoutquestionAction()
+	{
+		if(isset($_POST['idDcp']))
+		{
+			$question = new Questiondcp();
+			$max = $question->getIdMax($_POST['idDcp']);
+			$newQuestion = $question->createRow();
+			$newQuestion->id = $max["MAX(id)"]+1;
+			$newQuestion->idDcp = $_POST['idDcp'];
+			$newQuestion->intitule = $_POST['intitule'];
+			$newQuestion->nbPoint = $_POST['nbPoint'];
+			$newQuestion->idTypeQuestion = $_POST['idTypeQuestion'];
+			$newQuestion->save();
+			$this->_redirect('dcp/questiondcp?idDcp='.$_POST['idDcp']);
+		}
+
 	}
 }
