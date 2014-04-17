@@ -12,7 +12,7 @@
 <div class="row">
 	<div class="col-xs-12">
 		<button class="center btn btn-primary btn-lg" data-toggle="modal" data-target="#ajoutRep">
-			Ajouter une réponse
+			Ajouter des réponses
 		</button>
 
 		<br/><br/>
@@ -55,17 +55,28 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Ajouter une réponse</h4>
+				<h4 class="modal-title" id="myModalLabel">Ajouter des réponses</h4>
 			</div>
 
-			<form method="POST" action="/dcp/ajoutReponse">
+			<form method="POST" action="/dcp/ajoutreponse">
 				<div class="modal-body">
 					<input type="hidden" value="<?= $question['id']; ?>" />
 					<input type="text" class="form-control input_reponse" placeholder="Votre réponse" name="rep[1]"><br/>
+					<label>Valeur en point(s) :</label>
+			   		<select name="point[1]" class="form-control">
+			   			<?php for ($i = 1; $i <= 20; $i++): ?>
+					   		<option value="<?= $i; ?>"><?= $i; ?></option>
+					   	<?php endfor; ?>
+			   		</select><br />
+
+			   		<select name="action[1]" class="form-control">
+			   			<option value="ajouter">Ajouter</option>
+			   			<option value="retirer">Retirer</option>
+			   			<option value="neutre">Neutre</option>
+			   		</select>
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
 					<button type="button" class="btn btn-info btn-add">Ajouter plus de réponse</button>
 					<button type="submit" class="btn btn-success">Enregistrer</button>
 				</div>
@@ -81,7 +92,37 @@
 			if (nombre >= 12){
 				alert('Vous ne pouvez plus ajouter de réponse.');
 			} else {
-				$('.modal-body').append('<input type="text" class="form-control input_reponse" placeholder="Votre réponse" name="rep['+nombre+1+']" /><br/>');
+				$('.modal-body').append('<input type="text" class="form-control input_reponse" placeholder="Votre réponse" name="rep['+(nombre+1)+']" /><br/>'+
+					'<label>Valeur en point(s) :</label>'+
+			   		'<select name="point['+(nombre+1)+']" class="form-control">'+
+			   			'<option value="1">1</option>'+
+			   			'<option value="2">2</option>'+
+			   			'<option value="3">3</option>'+
+			   			'<option value="4">4</option>'+
+			   			'<option value="5">5</option>'+
+			   			'<option value="6">6</option>'+
+			   			'<option value="7">7</option>'+
+			   			'<option value="8">8</option>'+
+			   			'<option value="9">9</option>'+
+			   			'<option value="10">10</option>'+
+						'<option value="11">11</option>'+
+			   			'<option value="12">12</option>'+
+			   			'<option value="13">13</option>'+
+			   			'<option value="14">14</option>'+
+			   			'<option value="15">15</option>'+
+			   			'<option value="16">16</option>'+
+			   			'<option value="17">17</option>'+
+			   			'<option value="18">18</option>'+
+			   			'<option value="19">19</option>'+
+			   			'<option value="20">20</option>'+
+			   		'</select><br />'+
+
+			   		'<select name="action['+(nombre+1)+']" class="form-control">'+
+			   			'<option value="ajouter">Ajouter</option>'+
+			   			'<option value="retirer">Retirer</option>'+
+			   			'<option value="neutre">Neutre</option>'+
+			   		'</select>'
+				);
 			}
 		});
 	});

@@ -6,13 +6,14 @@
 		<link href="<?= $this->baseUrl('/css/style.css');?>" media="screen" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="<?= $this->baseUrl('js/jwplayer/jwplayer.js')?>"></script>
 		<link href="<?= $this->baseUrl('/css/bootstrap.min.css')?>" media="screen" rel="stylesheet" type="text/css" />
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	</head>
 
 	<body>
 		<header>
 			<nav class="wrapper-header">
 				<div class="container-fluid">
-					<div class="row-fluid">
+					<div class="row-fluid col-md-2 col-md-offset-10">
 							<?php $auth = Zend_Auth::getInstance();?>
 							<?php if ($auth->hasIdentity()): ?>
 								<a href="<?= $this->baseUrl('auth/logout')?>" rel="tooltip" class="btn btn-primary tips icon_logout btn-connect" data-original-title="Logout"><i class="icon-off"></i> Se déconnecter</a>
@@ -49,7 +50,51 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="footer center">
-							Developped by <a href="#">Matthieu DERACHE</a>
+							<div class="col-md-4 col-footer footerg">
+								<ul class="ul_footerg">
+									<li>Contactez-nous</li>
+									<li>Signalez un bug</li>
+									<li>Qui sommes-nous ?</li>
+								</ul>
+							</div>
+							<div class="col-md-4 col-footer">
+								<ul class="ul_footerg">
+									<li>Réglement</li>
+									<li>Publicité</li>
+									<li>Blabla</li>
+								</ul>
+							</div>
+							<div class="col-md-4 col-footer footerd">
+								<ul class="ul_footerd">
+									<div class="social"><a href="http://www.facebook.com">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-circle fa-stack-2x"></i>
+											<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+										</span>
+									</a></div>
+
+									<div class="social"><a href="http://www.twitter.com">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-circle fa-stack-2x"></i>
+											<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+										</span>
+									</a></div>
+
+									<div class="social"><a href="http://www.plus.google.com">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-circle fa-stack-2x"></i>
+											<i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+										</span>
+									</a></div>
+
+									<div class="social"><a href="http://www.instagram.com">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-circle fa-stack-2x"></i>
+											<i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+										</span>
+									</a></div>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>

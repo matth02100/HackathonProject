@@ -74,16 +74,9 @@ class DcpController extends Zend_Controller_Action
 	
 	public function ajoutreponseAction()
 	{
-		$formAjoutReponse = new Application_Form_Reponse();
-		$this->view->formajoutreponse = $formAjoutReponse;
-		if($this->getRequest()->isPost())
-		{
-			$data = $this->getRequest()->getPost();
-			Zend_Debug::dump($data);
-			if($formAjoutReponse->isValid($data))
-			{
-				echo 'coucouc';
-				$reponse= new Reponse();
+		Zend_Debug::dump($_POST);
+		
+				/*$reponse= new Reponse();
 				$max = $reponse->getIdMax();
 				$newReponse = $reponse->createRow();
 				$newReponse->id = $max["MAX(id)"]+1;
@@ -92,14 +85,7 @@ class DcpController extends Zend_Controller_Action
 				$newReponse->point = $formAjoutReponse->getValue('point');
 				$newReponse->save();
 				
-				$this->_redirect('question/lierreponse?id='.$formAjoutReponse->getValue('idQuestion'));
-			}
-			else
-			{
-				$this->view->formajoutreponse = $formAjoutReponse;
-				echo $formAjoutReponse;
-			}
-		}
+				$this->_redirect('question/lierreponse?id='.$formAjoutReponse->getValue('idQuestion'));*/
 	}
 	
 	/**********************          Partie Question            ***********************/
