@@ -1,0 +1,95 @@
+<?php
+	$questions = $this->questionsqi;
+	$categories = $this->categories;
+?>
+<div class="row content-heading title">
+	<div class="col-xs-11 col-xs-offset-1">
+		<h2>Liste des questions</h2>
+	</div>
+</div>
+
+<div class="separator">
+	<span></span>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<center>
+		<button class="center btn btn-primary btn-lg" data-toggle="modal" data-target="#ajoutQuestion">
+  			Ajouter une question
+		</button></center>
+
+		<br /><br />
+
+		<?php if($questions): ?>
+		<table class="center table table-striped table-hover">
+  			<thead>
+  				<tr>
+  					<th width="40%" class="center">Intitulé</th>
+  					<th width="20%" class="center">Catégorie</th>
+  					<th width="15%" class="center">Type</th>
+  					<th width="15%" class="center">Valeur en point(s)</th>
+  					<th></th>
+  				</tr>
+  			</thead>
+
+  			<tbody>
+  				<?php foreach($questions as $uneQuestion): ?>
+  				<tr>
+  					<td width="40%"><a href="/qi/reponseqi?idQuestion=<?= $uneQuestion['id'] ; ?>&idQi=<?= $_GET['idQi'];?>"><?= $uneQuestion['intitule']; ?></a></td>
+  					<td width="20%"><?= $uneQuestion['idCategorie']; ?></td>
+  					<td width="15%"><?= $uneQuestion['idTypeQuestion']; ?></td>
+  					<td width="15%"><?= $uneQuestion['nbPoint']; ?></td>
+  					<td><a href="/question/supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette question ?');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a></td>
+  				</tr>
+  				<?php endforeach; ?>
+  			</tbody>
+		</table>
+		<?php else: ?> <p class="center">Il n'y a aucune question d'enregistrées pour ce Qi.</p> <?php endif; ?>
+		
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ajoutQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter une question</h4>
+      </div>
+      <form method="POST" action="/qi/ajoutquestion">
+     	<div class="modal-body">
+			<div class="modal-body">
+				<input type="hidden" name="idQi" value="<?= $_GET['idQi'];?>"/>
+			   	<label>Question :</label><br />
+			   	<textarea rows="5" class="form-control" placeholder="Votre question" name="intitule"></textarea><br />
+			   	<label>Type :</label>
+			   	<select name="idTypeQuestion" class="form-control">
+			   		<option value="1">Texte libre</option>
+			   		<option value="2">Réponses multiples</option>
+			   	</select><br />
+			   	<label>Valeur en point(s) :</label>
+			   	<select name="nbPoint" class="form-control">
+					<?php for($i=0;$i<=20;$i++): ?>
+						<option value="<?= $i;?>"><?= $i;?></option>
+					<?php endfor;?>
+			   	</select><br />
+			   	<label>Catégorie</label>
+			   	<select class="form-control">
+					<?php foreach ($categories as $categorie):?>
+						<option value="<?= $categorie['id'] ;?>"><?= $categorie['nom'] ;?></option>
+					<?php endforeach; ?>
+				</select>
+
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	        <button type="submit" class="btn btn-success">Enregistrer</button>
+	      </div>
+      </form>
+    </div>
+  </div>
+</div>
