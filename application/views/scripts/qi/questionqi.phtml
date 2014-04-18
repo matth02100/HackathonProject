@@ -77,7 +77,7 @@
 					<?php endfor;?>
 			   	</select><br />
 			   	<label>Catégorie</label>
-			   	<select class="form-control">
+			   	<select class="form-control" name="idCategorie">
 					<?php foreach ($categories as $categorie):?>
 						<option value="<?= $categorie['id'] ;?>"><?= $categorie['nom'] ;?></option>
 					<?php endforeach; ?>
