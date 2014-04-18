@@ -1,4 +1,5 @@
-<?php $qis = $this->qis;?>
+<?php $qis = $this->qis;
+	$categories = $this->categories;?>
 <div class="row content-heading title">
 	<div class="col-xs-11 col-xs-offset-1">
 		<h2>Liste des dossiers de Question Indépendante : </h2>
@@ -19,6 +20,7 @@
 					<thead>
 						<tr>
 							<th class="center">Nom</th>
+							<th class="center">Catégorie</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -27,6 +29,7 @@
 						<?php foreach ($qis as $qi): ?>
 							<tr>
 								<td><a href="/qi/questionqi?idQi=<?= $qi['id']; ?>"><?= $qi['nom']; ?></a></td>
+								<td><?= $qi['idCategorie']; ?></td>
 								<td><a href="/qi/supprimer?id=<?= $qi['id']; ?>" onClick="return confirm('Etes vous sur de vouloir supprimer ce dossier de QI ?');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"> Supprimer</span></a></td>
 							</tr>
 						<?php endforeach; ?>
@@ -51,7 +54,18 @@
 			<form method="POST" action="/qi/ajout">
 				<div class="modal-body">
 					<input type="text" class="form-control" placeholder="Nom du dossier de QI" name="name"><br/>
+
+
+					<label>Catégorie</label>
+				   	<select class="form-control">
+						<?php foreach ($categories as $categorie):?>
+							<option value="<?= $categorie['id'] ;?>"><?= $categorie['nom'] ;?></option>
+						<?php endforeach; ?>
+					</select>
+				
 				</div>
+
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
 					<input type="submit" class="btn btn-success" value="Enregistrer" />
