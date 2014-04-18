@@ -1,7 +1,8 @@
 <?php
 	$reponses = $this->reponsesdcp;
+	$typeQuestion = $this->typeQuestion;
 ?>
-
+<?php if($typeQuestion['idTypeQuestion'] == 2): ?>
 <div class="row content-heading title">
 	<div class="col-xs-11 col-xs-offset-1">
 		<h2>Liste des réponses :</h2>
@@ -119,3 +120,92 @@
 		});
 	});
 </script>
+
+<?php else: //si c'est pas un choix multiple  ?>
+
+<div class="row content-heading title">
+	<div class="col-xs-11 col-xs-offset-1">
+		<h2>Liste des réponses valides :</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<button class="center btn btn-primary btn-lg" data-toggle="modal" data-target="#ajoutRep">
+			Ajouter des réponses
+		</button>
+
+		<br/><br/>
+
+		<?php if($reponses): ?>
+			<div class="table-responsive">
+				<table class="center table table-striped table-hover">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Intitulé</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<?php foreach($reponses as $reponse): ?>
+							<tr>
+								<td>Réponse <?= $reponse['id'];?></td>
+								<td><?= $reponse['intitule']; ?></td>
+								<td>
+									<a href="/dcp/supprimerreponse?idReponse=<?= $reponse['id']; ?>&idDcp=<?= $_GET['idDcp'];?>&idQuestion=<?= $_GET['idQuestion'];?>" onClick="return confirm('Etes vous sur de vouloir supprimer cette réponse ?');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"> Supprimer</span></a>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+		<?php else: ?>
+			<p class="center">Il n'y a aucune réponse pour le moment.</p>
+		<?php endif; ?>
+	</div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="ajoutRep" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Ajouter des réponses valides</h4>
+			</div>
+
+			<form method="POST" action="/dcp/ajoutreponse">
+				<div class="modal-body">
+					<input type="hidden" name="idQuestion[1]" value="<?= $_GET['idQuestion']; ?>" />
+					<input type="hidden" name="idDcp[1]" value="<?= $_GET['idDcp']; ?>" />
+					Réponse 1 : <br />
+					<input type="text" class="form-control input_reponse" placeholder="Votre réponse" name="rep[1]"><br/>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info btn-add">Ajouter plus de réponse</button>
+					<button type="submit" class="btn btn-success">Enregistrer</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.btn-add').on('click', function(e){
+			nombre = $('.input_reponse').length;
+			if (nombre >= 12){
+				alert('Vous ne pouvez plus ajouter de réponse.');
+			} else {
+				$('.modal-body').append('<br /><br />Réponse '+(nombre+1)+
+					'<input type="text" class="form-control input_reponse" placeholder="Votre réponse" name="rep['+(nombre+1)+']" /><br/>'
+				);
+			}
+		});
+	});
+</script>
+
+<?php endif; ?>

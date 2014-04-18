@@ -1,6 +1,6 @@
 <?php
 
-class DcpController extends Zend_Controller_Action
+class QiController extends Zend_Controller_Action
 {
 	public function postDispatch()
 	{
@@ -18,8 +18,8 @@ class DcpController extends Zend_Controller_Action
 
 	public function indexAction()
 	{
-		 $dcp = new Dcp();
-		 $this->view->dcps = $dcp->selectAll();
+		 $qi = new Qi();
+		 $this->view->qis = $qi->selectAll();
 		 $categorie = new Categorie();
 		 $this->view->categories = $categorie->selectAll();
 	}

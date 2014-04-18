@@ -34,6 +34,13 @@ $this->placeholder('menu')->captureStart();
 				<?php endif; ?>
 					<a href="<?= $this->baseUrl('/dcp/index'); ?>">Gestion des DCP</a></li>
 
+				<?php if ($act == 'index' && $ctr == 'qi'): ?>
+					<li class="active">
+				<?php else: ?>
+					<li>
+				<?php endif; ?>
+					<a href="<?= $this->baseUrl('/qi/index'); ?>">Gestion des QI</a></li>
+					
 				<?php if ($act == 'index' && $ctr == 'categorie'): ?>
 					<li class="active">
 				<?php else: ?>
@@ -41,10 +48,7 @@ $this->placeholder('menu')->captureStart();
 				<?php endif; ?>
 					<a href="<?= $this->baseUrl('/categorie/index'); ?>">Gestion des catégories</a></li>
 
-				<li><a href="<?= $this->baseUrl('/user/index'); ?>">Menu 1</a></li>
-				<li><a href="<?= $this->baseUrl('/user/index'); ?>">Menu 2</a></li>
-				<li><a href="<?= $this->baseUrl('/user/index'); ?>">Menu 3</a></li>
-				<li><a href="<?= $this->baseUrl('/user/index'); ?>">Menu 4</a></li>
+				<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 				
 			</ul>
 		</div>
