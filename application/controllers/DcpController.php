@@ -74,18 +74,32 @@ class DcpController extends Zend_Controller_Action
 	
 	public function ajoutreponseAction()
 	{
-		Zend_Debug::dump($_POST);
-		
-				/*$reponse= new Reponse();
-				$max = $reponse->getIdMax();
-				$newReponse = $reponse->createRow();
-				$newReponse->id = $max["MAX(id)"]+1;
-				$newReponse->idQuestion = $formAjoutReponse->getValue('idQuestion');
-				$newReponse->reponse = $formAjoutReponse->getValue('reponse');
-				$newReponse->point = $formAjoutReponse->getValue('point');
-				$newReponse->save();
-				
-				$this->_redirect('question/lierreponse?id='.$formAjoutReponse->getValue('idQuestion'));*/
+		$reponse= new Propositionquestiondcp();
+		$max = $reponse->getIdMax($_POST['idDcp'][1],$_POST['idQuestion'][1]);
+		Zend_Debug::dump($max);
+		for($i=1;$i<=count($_POST['rep']);$i++)
+		{
+			$newReponse = $reponse->createRow();
+			$newReponse->id = $max["MAX(id)"]+1;
+			$newReponse->idDcp = $_POST['idDcp'][1];
+			$newReponse->idQuestionDcp = $_POST['idQuestion'][1];
+			$newReponse->intitule = $_POST['rep'][$i];
+			$newReponse->nbPoint = $_POST['point'][$i];
+			$newReponse->effetSurPoint = $_POST['action'][$i];
+			$newReponse->save();
+			$max["MAX(id)"]= $max["MAX(id)"]+1;
+		}
+		$this->_redirect('dcp/reponsedcp?idQuestion='.$_POST['idQuestion'][1].'&idDcp='.$_POST['idDcp'][1]);
+	}
+	
+	public function supprimerreponseAction()
+	{
+		if(isset($_GET['idDcp']) && isset($_GET['idQuestion']) && isset($_GET['idReponse']))
+		{
+			$reponse = new Propositionquestiondcp();
+    		$reponse->deleteReponse($_GET['idDcp'],$_GET['idQuestion'],$_GET['idReponse']);
+			$this->_redirect('dcp/reponsedcp?idQuestion='.$_GET['idQuestion'].'&idDcp='.$_GET['idDcp']);
+		}
 	}
 	
 	/**********************          Partie Question            ***********************/
