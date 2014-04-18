@@ -26,42 +26,25 @@ class QiController extends Zend_Controller_Action
 	
 	public function ajoutAction()
 	{
-		$formAjoutDcp = new Application_Form_Dcp();
-		$this->view->formajoutdcp = $formAjoutDcp;
-		if($this->getRequest()->isPost())
-		{
-			$data = $this->getRequest()->getPost();
-			if($formAjoutDcp->isValid($data))
-			{
-				$dcp= new Dcp();
-				$max = $dcp->getIdMax();
-				$newDcp = $dcp->createRow();
-				$newDcp->id = $max["MAX(id)"]+1;
-				$newDcp->nom = $formAjoutDcp->getValue('name');
-				$newDcp->casClinique = $formAjoutDcp->getValue('casClinique');
-				$newDcp->image = $formAjoutDcp->getValue('image');
-				$newDcp->son = $formAjoutDcp->getValue('son');
-				$newDcp->video = $formAjoutDcp->getValue('video');
-				$newDcp->idCategorie = $formAjoutDcp->getValue('idCategorie');
-				$newDcp->save();
-				
-				$this->_redirect('dcp/index');
-			}
-			else
-			{
-				$this->view->formajoutdcp = $formAjoutDcp;
-			}
-		}
+		var_dump($_POST['name']);
+		$qi= new Qi();
+		$max = $qi->getIdMax();
+		$newQi = $qi->createRow();
+		$newQi->id = $max["MAX(id)"]+1;
+		$newQi->nom = $_POST['name'];
+		$newQi->save();
+		
+		$this->_redirect('qi/index');
 	}
 	
 	public function supprimerAction()
 	{
 		if(isset($_GET['id']))
 		{
-			$dcp = new Dcp();
-    		$ledcp = $dcp->find($_GET['id'])->current();
-    		$ledcp->delete();
-			$this->_redirect('dcp/index');
+			$qi = new Qi();
+    		$leqi = $qi->find($_GET['id'])->current();
+    		$leqi->delete();
+			$this->_redirect('qi/index');
 		}
 	}
 	
