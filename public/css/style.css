@@ -10,11 +10,9 @@
 nav {
 	position : fixed;
 	width : 100%;
-	height : 50px;
 	padding-left : 10px;
 	padding-right : 10px;
-	margin-left: auto;
-	margin-right: auto;
+	padding: 10px 0;
 	background-color: #5E5C5A;
 	z-index : 1;
 }
@@ -22,113 +20,42 @@ nav {
 .lecontenu {
 	margin-top : 80px;
 }
-
-
-
+.min500 {
+	min-height: 500px;
+}
 footer {
-	position : relative;
-	margin-top : 20px;
+	background-color: #5E5C5A;
+	color : white;
+	padding: 10px 0;
 }
 
-.login {
-	width : 450px;
-	margin : 0 auto;
-	margin-top : 50px;
-}
-
-.inscription {
-	margin-left : -130px;
+ul{
+	list-style:none;
+	padding: 0;
+	margin: 0;
 }
 
 .btn-connect {
-	margins: 5px;
-}
-
-
-.label_inscrip {
-	font-size : 12px;
-	margin-top : 5px;
-}
-
-.titre_insc {
-	margin-top : -15px;
-	margin-bottom: 20px;
-	text-align : center;
-}
-
-.btn-insc {
-	margin-left : 150px;
-	margin-top : 20px;
-}
-
-.titre_connect {
-	margin-top : 90px;
-	margin-bottom : 20px;
-	margin-left : 60px;
+	margin: 5px;
 }
 
 .body-container {
-	margin-top : 70px;
+	margin-top : 50px;
 }
 
+.menu {
+	min-height: 500px;
+}
 .menu_gauche {
-	width : 175px;
-	margin-left : -16px;
-	margin-top : -20px;
 	position : relative;
-	min-height : 500px;
 	padding-top: 15px;
 	background-color: #D4CFC5;
-	border-bottom-right-radius: 33px;
+	/*border-bottom-right-radius: 33px;*/
 }
-
-.contenu_index {
-	position : relative;
-	width : 980px;
-	margin-top : -500px;
-	margin-left: 170px;
-	min-height : 500px;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
 .menu_droite {
-	position : relative;
-	width : 175px;
-	margin-top : -530px;
-	margin-left : 1160px;
-	min-height : 500px;
 	padding-top : 15px;
 	background-color: #D4CFC5;
-	border-bottom-left-radius: 33px;
-}
-
-.affichage {
-	display : inline-block;
-}
-
-.section_footer {
-	background-color: #5E5C5A;
-	color : white;
-}
-
-.footer_modal {
-}
-
-.col-footer {
-
-}
-
-.footerd {
-}
-.footer ul{
-	margin-top:10px;
-}
-.footer li{
-	
-	list-style:none;
-	text-align:center;
-
+	/*border-bottom-left-radius: 33px;*/
 }
 .titre_footer {
 	text-align : center;
@@ -137,16 +64,16 @@ footer {
 	font-style: bold;
 }
 
-.ul_footerg {
-}
-
-.ul_footerd {
-}
-
-.ul_footerd li {
-}
-
 .social {
-	float:left;
-	margin:10px;
+	background: #428bca;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+}
+.social:hover {
+	background: #357ebd;
+}
+.social a {
+	padding: 10px;
+	display: block;
 }

@@ -7,97 +7,82 @@
 	</head>
 
 	<body>
-		<div id="main-wrapper">
 		<header>
 			<nav class="wrapper-header">
-				<div class="container-fluid">
-					<div class="row-fluid">
+				<div class="row">
+					<div class="col-md-2 col-md-offset-10">
 						<?php $auth = Zend_Auth::getInstance();?>
 						<?php if ($auth->hasIdentity()): ?>
-							<a href="<?= $this->baseUrl('auth/logout')?>" rel="tooltip" class="btn btn-primary tips icon_logout btn-connect" data-original-title="Logout"><i class="icon-off"></i> Se déconnecter</a>	
+							<a href="<?= $this->baseUrl('auth/logout')?>" rel="tooltip" class="btn btn-primary tips icon_logout btn-connect" data-original-title="Logout"><i class="icon-off"></i>Se déconnecter</a>	
 						<?php else: ?>
-							<a href="#" rel="tooltip" class="btn btn-primary btn-connect" data-original-title="Login">Connexion</a>
-						<?php endif; ?>
-
-						
+							<a href="#" rel="tooltip" class="btn btn-primary btn-connect" data-original-title="Login" data-toggle="modal" data-target="#modal_connexion">Connexion</a>
+						<?php endif; ?>					
 					</div>
 				</div>
 			</nav>
 		</header>
-		</div>
-			<div class="container-fluid contenu">
-				<div class="row-fluid lecontenu">
-					<div class="span12">
-						<div class="wrapper">
-							<?php if ($auth->hasIdentity()): ?>
-								<?= $this->placeholder('menu'); ?>
-							<?php endif ; ?>
-							<?= $this->layout()->content; ?>
-						</div>
-					</div>
-		    	</div>
-		    </div>
-			<footer>
-				<div class="container-fluid fond section_footer">
-					<div class="row-fluid">
-						<div class="span12">
-							<div class="footer center">
-								<div class="col-md-4 col-footer footerg">
-									<ul class="ul_footerg">
-										<li>Contactez-nous</li>
-										<li>Signalez un bug</li>
-										<li>Qui sommes-nous ?</li>
-									</ul>
-								</div>
-								<div class="col-md-4 col-footer">
-									<ul class="ul_footerg">
-										<li>Réglement</li>
-										<li>Publicité</li>
-										<li>Blabla</li>
-									</ul>
-								</div>
-								<div class="col-md-4 col-footer footerd">
-									<ul class="ul_footerd">
-										<div class="social"><a href="http://www.facebook.com">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x"></i>
-												<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-											</span>
-										</a></div>
-
-										<div class="social"><a href="http://www.twitter.com">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x"></i>
-												<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-											</span>
-										</a></div>
-
-										<div class="social"><a href="http://www.plus.google.com">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x"></i>
-												<i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
-											</span>
-										</a></div>
-
-										<div class="social"><a href="http://www.instagram.com">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x"></i>
-												<i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-											</span>
-										</a></div>
-									</ul>
-								</div>
-							</div>
-						</div>
+		<div class="container-fluid">
+			<div class="row body-container">
+				<div class="menu_gauche col-md-2 menu">
+					<div class="min500">
+						<?php if ($auth->hasIdentity()): ?>
+							<?= $this->placeholder('menu'); ?>
+						<?php endif ; ?>
 					</div>
 				</div>
-			</footer>
+
+				<div class="col-md-10">
+					<?= $this->layout()->content; ?>
+				</div>
+	    	</div>
+	    </div>
+		<footer>
+			<div class="row-fluid clearfix">
+				<div class="col-md-4 text-center">
+					<ul class="list-inline">
+						<li>Contactez-nous</li>
+						<li>Signalez un bug</li>
+						<li>Qui sommes-nous ?</li>
+					</ul>
+				</div>
+				<div class="col-md-4 text-center">
+					<ul class="list-inline">
+						<li>Réglement</li>
+						<li>Publicité</li>
+						<li>Blabla</li>
+					</ul>
+				</div>
+				<div class="col-md-4 text-center">
+					<ul class="list-inline">
+						<li class="social">
+							<a href="http://www.facebook.com">
+								<i class="fa fa-facebook fa-inverse"></i>
+							</a>
+						</li>
+						<li class="social">
+							<a href="http://www.twitter.com">
+								<i class="fa fa-twitter fa-inverse"></i>
+							</a>
+						</li>
+						<li class="social">
+							<a href="http://www.plus.google.com">
+								<i class="fa fa-google-plus fa-inverse"></i>
+							</a>
+						</li>
+						<li class="social">
+							<a href="http://www.instagram.com">
+								<i class="fa fa-instagram fa-inverse"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</footer>
 			<script type="text/javascript" src="<?= $this->baseUrl('/js/jquery.min.js');?>"></script>
 			<script type="text/javascript" src="<?= $this->baseUrl('/js/bootstrap.min.js');?>"></script>
-		</section>
 
 		<!-- Modal -->
-		<div class="modal fade bs-example-modal-lg" id="myModal" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal fade bs-example-modal-lg" id="modal_connexion" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   			<div class="modal-dialog modal-lg">
    				<div class="modal-content">
       				<div class="modal-header">
@@ -105,99 +90,91 @@
         				<h4 class="modal-title">Authentification :</h4>
      				</div>
       				<div class="modal-body">
-        				<div class="offset4 span3 center" style="margin-top:15px">
-	        				<div class="row">
-								<div class="col-md-6">
-									<div class="login">
-										<h3 class="titre_connect">Connexion : </h3>
-										<form class="form-horizontal" method="POST" action="<?= $this->baseUrl('/auth/login')?>" role="form">
-											<div class="form-group">
-												<div class="col-sm-10">
-													<input name="mail" class="form-control input_login" type="text" placeholder="Mail : exemple@mail.com"/><br/>
-												</div>
-											</div>
-											<div class="form-group">
-												<div class="col-sm-10">
-													<input name="pwd" class="form-control input_login" type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;"/><br/>
-												</div>
-											</div>
-											<div class="form-group">
-												<div class="col-sm-offset-2 col-sm-10">
-													<input name="connexion" class="btn btn-primary btn-lg" type="submit" id="btn-login"/>
-												</div>
-											</div>
-										</form>
-
-										<?php if(isset($this->erreur)):?>
-										<div class="alert">
-											<?= $this->erreur; ?>
+        				<div class="row">
+							<div class="col-md-5">
+								<h3 class="text-center">Connexion : </h3>
+								<form class="form-horizontal text-center" method="POST" action="<?= $this->baseUrl('/auth/login')?>" role="form">
+									<div class="form-group">
+					 					<label class="col-sm-3 control-label">Mail</label>
+					 					<div class="col-sm-9">
+											<input name="mail" class="form-control" type="text" placeholder="Mail : exemple@mail.com"/>
 										</div>
-										<?php endif;?>
-								 	</div>
-							 	</div>
+									</div>
+									<div class="form-group">
+					 					<label class="col-sm-3 control-label">Password</label>
+					 					<div class="col-sm-9">
+											<input name="pwd" class="form-control" type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<input name="connexion" class="btn btn-primary btn-lg" type="submit" id="btn-login"/>
+									</div>
+								</form>
 
-							 	<div class="col-md-6">
-							 		<div class="inscription">
-							 			<h3 class="titre_insc">Inscription :</h3>
-							 			<form class="form-horizontal" method="POST" action="<?= $this->baseUrl('/auth/inscription')?>" role="form">
-							 				<div class="form-group">
-							 					<label for="pseudo" class="col-sm-2 label_inscrip">Pseudo</label>
-							 					<div class="col-sm-10">
-							 						<input type="text" name="pseudo" class="form-control" placeholder="Toto" />
-							 					</div>
-							 				</div>
+								<?php if(isset($this->erreur)):?>
+								<div class="alert">
+									<?= $this->erreur; ?>
+								</div>
+								<?php endif;?>
+						 	</div>
 
-							 				<div class="form-group">
-							 					<label for="mail" class="col-sm-2 label_inscrip">Mail</label>
-							 					<div class="col-sm-10">
-							 						<input type="email" name="mail" class="form-control" placeholder="exemple@mail.com" />
-							 					</div>
-							 				</div>
+						 	<div class="col-md-7">
+					 			<h3 class="text-center">Inscription :</h3>
+					 			<form class="form-horizontal text-center" method="POST" action="<?= $this->baseUrl('/auth/inscription')?>" role="form">
+					 				<div class="form-group">
+					 					<label for="pseudo" class="col-sm-2 control-label">Pseudo</label>
+					 					<div class="col-sm-10">
+					 						<input type="text" name="pseudo" class="form-control" placeholder="Toto" />
+					 					</div>
+					 				</div>
 
-							 				<div class="form-group">
-							 					<label for="password" class="col-sm-2 label_inscrip">Mot de passe</label>
-							 					<div class="col-sm-10">
-							 						<input type="password" name="password" class="form-control" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
-							 					</div>
-							 				</div>
+					 				<div class="form-group">
+					 					<label for="mail" class="col-sm-2 control-label">Mail</label>
+					 					<div class="col-sm-10">
+					 						<input type="email" name="mail" class="form-control" placeholder="exemple@mail.com" />
+					 					</div>
+					 				</div>
 
-							 				<div class="form-group">
-							 					<label for="name" class="col-sm-2 label_inscrip">Nom</label>
-							 					<div class="col-sm-10">
-							 						<input type="text" name="name" class="form-control" placeholder="Dupont" />
-							 					</div>
-							 				</div>
+					 				<div class="form-group">
+					 					<label for="password" class="col-sm-2 control-label">Mot de passe</label>
+					 					<div class="col-sm-10">
+					 						<input type="password" name="password" class="form-control" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+					 					</div>
+					 				</div>
 
-							 				<div class="form-group">
-							 					<label for="surname" class="col-sm-2 label_inscrip">Prénom</label>
-							 					<div class="col-sm-10">
-							 						<input type="text" name="surname" class="form-control" placeholder="Martin" />
-							 					</div>
-							 				</div>
+					 				<div class="form-group">
+					 					<label for="name" class="col-sm-2 control-label">Nom</label>
+					 					<div class="col-sm-10">
+					 						<input type="text" name="name" class="form-control" placeholder="Dupont" />
+					 					</div>
+					 				</div>
 
-							 				<div class="form-group">
-							 					<label for="year" class="col-sm-2 label_inscrip">Année d'étude</label>
-							 					<div class="col-sm-10">
-							 						<input type="text" name="year" class="form-control" placeholder="5ème année" />
-							 					</div>
-							 				</div>
+					 				<div class="form-group">
+					 					<label for="surname" class="col-sm-2 control-label">Prénom</label>
+					 					<div class="col-sm-10">
+					 						<input type="text" name="surname" class="form-control" placeholder="Martin" />
+					 					</div>
+					 				</div>
 
-							 				<div class="form-group">
-							 					<label for="facult" class="col-sm-2 label_inscrip">Faculté</label>
-							 					<div class="col-sm-10">
-							 						<input type="text" name="facult" class="form-control input_inscript" placeholder="Université de Saint-Quentin" />
-							 					</div>
-							 				</div>
+					 				<div class="form-group">
+					 					<label for="year" class="col-sm-2 control-label">Année d'étude</label>
+					 					<div class="col-sm-10">
+					 						<input type="text" name="year" class="form-control" placeholder="5ème année" />
+					 					</div>
+					 				</div>
 
-							 				<div class="form-group">
-												<div class="col-sm-offset-2 col-sm-10">
-													<input name="inscription" class="btn btn-primary btn-lg btn-insc" type="submit" id="btn-inscription"/>
-												</div>
-											</div>
-							 			</form>
-							 		</div>
-							 	</div>
-							</div>
+					 				<div class="form-group">
+					 					<label for="facult" class="col-sm-2 control-label">Faculté</label>
+					 					<div class="col-sm-10">
+					 						<input type="text" name="facult" class="form-control input_inscript" placeholder="Université de Saint-Quentin" />
+					 					</div>
+					 				</div>
+
+					 				<div class="form-group">
+										<input name="inscription" class="btn btn-primary btn-lg" type="submit" id="btn-inscription"/>
+									</div>
+					 			</form>
+						 	</div>
 						</div>
       				</div>
     			</div><!-- /.modal-content -->
@@ -206,13 +183,3 @@
 
 	</body>
 </html>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.btn-connect').on('click', function(e){
-			$('#btn-login').text('Connexion');
-			$('.input_login').css('width', '280px');
-			$('#myModal').modal();
-		})
-	});
-</script>

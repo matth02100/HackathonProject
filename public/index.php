@@ -16,7 +16,7 @@ set_include_path(implode(PATH_SEPARATOR, array(realpath(APPLICATION_PATH), get_i
 
 //on lance la session
 require_once 'Zend/Session.php';
-Zend_Session::start();
+//Zend_Session::start();
 
 // on a besoin de zend app pour lancer l'application
 require_once 'Zend/Application.php';

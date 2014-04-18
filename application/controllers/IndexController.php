@@ -1,12 +1,11 @@
 <?php
-
 class IndexController extends Zend_Controller_Action
 {
-	public function postDispatch()
-	{
-		$this->view->render('placeholder/menu.phtml');
-    $this->view->render('placeholder/menudroite.phtml');
-	}
+  	public function postDispatch()
+  	{
+  		$this->view->render('placeholder/menu.phtml');
+      $this->view->render('placeholder/menudroite.phtml');
+  	}
 	
     public function init()
     {
@@ -19,6 +18,10 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
+      return true;
+    }
 
+    public function testAction() {
+      die('truc');
     }
 }
